@@ -14,6 +14,10 @@
 
 #ifndef LIST_H
 #define LIST_H
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 typedef struct list List;
 
 /* The n variable shows the number of elements in the list for the head */
@@ -32,6 +36,7 @@ List *create_list();
 int destroy_list(List *head);
 int insert_list(List *head, void *data, List *element);
 void *remove_list(List *head, List *element);
+int cpy_list(List *l1, List **l2);
 List *concat_list(List *l1, List *l2);
 int is_empty(List *head);
 #endif

@@ -11,8 +11,6 @@
  * Desc.: A list library for Njord's project.
  * URL: https://github.com/LCRERGO/Data_Structures
 */
-#include <stdio.h>
-#include <stdlib.h>
 
 #include "List.h"
 
@@ -167,6 +165,28 @@ remove_list(List *head, List *element)
    return data;
 }
 
+/*
+ * Desc.: Copies a list to a pointer.
+ * I: A list and a pointer to a list.
+ * O: 1 in case of success, 0 otherwise.
+*/
+int
+cpy_list(List *l1, List **l2)
+{
+    List *iter;
+    void *data_aux;
+
+    *l2 = create_list();
+    iter = l1->node;
+    while (iter != NULL) {
+        data_aux = malloc(sizeof(iter->data));
+        memcpy(data_aux, iter->data, sizeof(iter->data));
+        insert_list(*l2, data_aux, NULL);
+        iter = iter->node;
+    }
+
+    return 1;
+}
 
 /*
  * Desc.: Concatenates two lists
@@ -196,7 +216,7 @@ concat_list(List *l1, List *l2)
 /*
  * Desc.: Tests if the list is empty or not.
  * I: The head of the list.
- * O: 1 in case it is, 0 otherwise.
+ * O: 1 in case it is empty, 0 otherwise.
 */
 int
 is_empty(List *head)
